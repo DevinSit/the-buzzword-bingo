@@ -6,10 +6,12 @@ import "./App.css";
 
 const POLL_PERIOD = 5000;  // 5 seconds
 
+const username = randomUsernameGenerator.generate();
+
 class App extends React.Component {
     state = {
-        username: randomUsernameGenerator.generate(),
-        users: [],
+        username,
+        users: [username],
         winners: [],
         alreadyWon: false,
         cheater: false
@@ -32,7 +34,7 @@ class App extends React.Component {
         this.pollForUsersTimer = null;
     }
 
-    pollForUsers() {
+    pollForUsers = () => {
         return setInterval(async () => {
             const serverState = await api.users.getState();
             this.setState(serverState);
