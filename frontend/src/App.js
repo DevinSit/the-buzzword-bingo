@@ -1,51 +1,57 @@
 import React from "react";
-import io from "socket.io-client";
-import rug from "random-username-generator";
-
+import randomUsernameGenerator from "random-username-generator";
+import api from "./api";
 import {BingoGrid, ConnectedUsers, Restartbar, Titlebar, Winners} from "./components";
 import "./App.css";
 
-const SERVER_URL = "http://localhost:8080";
+const POLL_PERIOD = 5000;  // 5 seconds
 
 class App extends React.Component {
-    socket = null;
-
     state = {
-        username: rug.generate(),
-        connectedUsernames: [],
+        username: randomUsernameGenerator.generate(),
+        users: [],
         winners: [],
         alreadyWon: false,
         cheater: false
     };
 
-    componentDidMount() {
-        this.socket = io(SERVER_URL, {query: `name=${this.state.username}`});
-
-        this.socket.on("connected_users_changed", (users) => {
-            this.setState({connectedUsernames: [...users]});
-        });
-
-        this.socket.on("bingo", (winners) => {
-            this.setState({winners});
-        });
+    async componentDidMount() {
+        const serverState = await api.users.connect(this.state.username);
+        this.setState(serverState);
 
         window.addEventListener("resize", this.rerender);
+        window.addEventListener("beforeunload", this.disconnect)
+
+        this.pollForUsersTimer = this.pollForUsers();
     }
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.rerender);
+        window.removeEventListener("beforeunload", this.disconnect);
+
+        this.pollForUsersTimer = null;
+    }
+
+    pollForUsers() {
+        return setInterval(async () => {
+            const serverState = await api.users.getState();
+            this.setState(serverState);
+        }, POLL_PERIOD);
+    }
+
+    disconnect = async () => {
+        await api.users.disconnect(this.state.username);
     }
 
 	rerender = debounce(() => {
         this.setState(this.state)
     }, 100)
 
-    handleWinner = (words) => {
+    handleWinner = async (words) => {
         this.setState({alreadyWon: true})
-        this.socket.emit("bingo", {
-            username: this.state.username,
-            words
-        });
+
+        const winners = await api.users.saveWinner(this.state.username);
+        this.setState({winners});
     }
 
     handleCheater = () => {
@@ -84,9 +90,9 @@ class App extends React.Component {
     }
 }
 
-const AppDesktopLayout = ({username, connectedUsernames, winners, alreadyWon, handleWinner, handleCheater}) => (
+const AppDesktopLayout = ({username, users, winners, alreadyWon, handleWinner, handleCheater}) => (
     <div id="app-content">
-        <ConnectedUsers users={connectedUsernames} />
+        <ConnectedUsers users={users} />
 
         <BingoGrid
             username={username}
@@ -99,7 +105,7 @@ const AppDesktopLayout = ({username, connectedUsernames, winners, alreadyWon, ha
     </div>
 );
 
-const AppLaptopLayout = ({username, connectedUsernames, winners, alreadyWon, handleWinner, handleCheater}) => (
+const AppLaptopLayout = ({username, users, winners, alreadyWon, handleWinner, handleCheater}) => (
     <div id="app-content">
         <BingoGrid
             username={username}
@@ -109,7 +115,7 @@ const AppLaptopLayout = ({username, connectedUsernames, winners, alreadyWon, han
         />
 
         <div id="app-users">
-            <ConnectedUsers users={connectedUsernames} />
+            <ConnectedUsers users={users} />
             <Winners winners={winners} />
         </div>
     </div>
