@@ -15,7 +15,7 @@ const BUZZWORDS = [
 
 export default class BingoGrid extends React.Component {
     startTime = new Date();
-    cheatPreventionEnabled = true;
+    cheatPreventionEnabled = false;
 
     state = {
         buzzwords: shuffleWords(BUZZWORDS)
@@ -82,7 +82,7 @@ const BingoGridLayout = ({username, buzzwords, alreadyWon, onCellClick}) => (
                     {row.map((buzzword, cellIndex) => (
                         <div
                             className={classNames(
-                                "buzzword-cell", 
+                                "buzzword-cell",
                                 {"buzzword-cell--selected": buzzword.selected},
                                 {"buzzword-cell--selected--won": buzzword.win},
                                 {"buzzword-cell--disabled": alreadyWon}
