@@ -5,12 +5,12 @@ let users = [];
 const winners = [];
 
 router.get("/", (req, res) => {
-    res.send({status: "success", users});
+    res.send({status: "success", users, winners});
 });
 
 router.post("/", (req, res) => {
     users.push(String(req.body.username));
-    res.send({status: "success", users});
+    res.send({status: "success", users, winners});
 });
 
 router.delete("/", (req, res) => {
@@ -18,12 +18,8 @@ router.delete("/", (req, res) => {
     res.send({status: "success", users});
 });
 
-router.get("/winners", (req, res) => {
-    res.send({status: "success", winners});
-});
-
 router.post("/winners", (req, res) => {
-    users.push(String(req.body.username));
+    winners.push(String(req.body.username));
     res.send({status: "success", winners});
 });
 
