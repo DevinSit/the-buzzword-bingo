@@ -20,6 +20,8 @@ steps:
         - "--platform"
         - "managed"
         - "--allow-unauthenticated"
+        - "--max-instances"
+        - "1"
 
 timeout: 1800s
 images: ["gcr.io/$PROJECT_ID/thebuzzwordbingo-backend:$COMMIT_SHA"]
