@@ -41,7 +41,10 @@ class App extends React.Component {
         }, POLL_PERIOD);
     }
 
-    disconnect = async () => {
+    disconnect = async (e) => {
+        e.preventDefault();
+        e.returnValue = "Are you sure you want to disconnect?";
+
         await api.users.disconnect(this.state.username);
     }
 
