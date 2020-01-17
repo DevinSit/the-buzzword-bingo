@@ -5,7 +5,7 @@ import rug from "random-username-generator";
 import {BingoGrid, ConnectedUsers, Restartbar, Titlebar, Winners} from "./components";
 import "./App.css";
 
-const SERVER_URL = "http://backend.thebuzzwordbingo.com:8080";
+const SERVER_URL = "http://localhost:8080";
 
 class App extends React.Component {
     socket = null;
@@ -33,7 +33,7 @@ class App extends React.Component {
     }
 
     componentWillUnmount() {
-        window.removeEvenetListener("resize", this.rerender);
+        window.removeEventListener("resize", this.rerender);
     }
 
 	rerender = debounce(() => {
