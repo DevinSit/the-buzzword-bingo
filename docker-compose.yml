@@ -12,6 +12,7 @@ services:
             - ./frontend:/frontend
             - frontend-deps:/frontend/node_modules
     backend:
+        command: npm start
         build:
             context: ./backend
         ports:
