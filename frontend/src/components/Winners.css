@@ -1,0 +1,20 @@
+.winners-container {
+    background-color: white;
+    border: none;
+    box-shadow: 0 2px 57px 0 rgba(0,0,0,0.5);
+    text-align: left;
+    min-width: 250px;
+}
+
+.winners {
+    color: #364040;
+    padding: 30px;
+    height: 375px;
+    overflow-y: auto;
+}
+
+@media (max-width: 1350px) {
+    .winners-container {
+        margin-right: 40px;
+    }
+}

@@ -1,0 +1,7 @@
+.card-header {
+    box-shadow: 0 2px 5px 3px rgba(0,0,0,0.4);
+    color: hsla(0, 0%, 100%, 0.85);
+    font-weight: normal;
+    padding: 10px;
+    text-align: center;
+}

@@ -1,0 +1,70 @@
+.buzzwords-container {
+    align-self: flex-start;
+    background-color: white;
+    border: none;
+    box-shadow: 0 2px 57px 0 rgba(0, 0, 0, 0.5);
+    flex: 1;
+    margin: 0 40px;
+}
+
+.buzzwords-grid {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.buzzword-row {
+    display: flex;
+}
+
+.buzzword-cell {
+    align-items: center;
+    border: 1px solid rgba(54, 64, 64, 0.85);
+    color: #364040;
+    cursor: pointer;
+    display: flex;
+    height: 75px;
+    flex: 1;
+    justify-content: center;
+    margin-left: -1px;
+    margin-top: -1px;
+    text-align: center;
+    transition: background 0.06s ease-in-out;
+    user-select: none;
+}
+
+.buzzword-cell:hover {
+    background-color: #EDEDED;
+}
+
+.buzzword-cell--disabled {
+    cursor: default;
+}
+
+.buzzword-cell--disabled:hover {
+    background-color: inherit;
+}
+
+.buzzword-cell--selected {
+    background-color: #007272;
+    color: hsla(0, 0%, 100%, 0.85);
+}
+
+.buzzword-cell--selected:hover {
+    background-color: #007272;
+}
+
+.buzzword-cell--selected--won {
+    background-color: #e22866;
+}
+
+.buzzword-cell--selected--won:hover {
+    background-color: #e22866;
+}
+
+@media (max-width: 1350px) {
+    .buzzwords-container {
+        align-self: stretch;
+        margin: 0;
+    }
+}

@@ -1,0 +1,35 @@
+html, body, #root, #app {
+    height: 100%;
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    background-color: #20313b;
+    font-family: "Open Sans", sans-serif;
+}
+
+#app-content {
+    background-color: #20313b;
+    display: flex;
+    height: 100% - 40px;
+    padding: 20px 40px;
+}
+
+#app-users {
+    display: flex;
+}
+
+@media (max-width: 1350px) {
+    #app-content {
+        flex-direction: column;
+    }
+
+    #app-users {
+        margin-top: 40px;
+    }
+}

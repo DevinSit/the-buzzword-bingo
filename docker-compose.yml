@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+    frontend:
+        build:
+            context: ./frontend
+            args: 
+                app_env: dev
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./frontend:/frontend
+            - frontend-deps:/frontend/node_modules
+    backend:
+        build:
+            context: ./backend
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./backend/:/backend
+
+volumes:
+    frontend-deps:

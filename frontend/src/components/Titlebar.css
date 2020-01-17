@@ -1,0 +1,11 @@
+.titlebar-container {
+    color: hsla(0, 0%, 100%, 0.85);
+    padding: 20px 0 40px 0;
+    text-align: center;
+}
+
+.titlebar-title {
+    font-size: 2.5em;
+    margin: 0;
+    padding: 0;
+}
