@@ -9,7 +9,7 @@ const API_ROOT = "/api/v1";
 
 const app = express();
 
-// Enable security, CORS, compression, and body parsing
+// Enable middleware for security, CORS, compression, body parsing, etc
 app.use(cors());
 app.options("*", cors());
 app.use(express.json());
