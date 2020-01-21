@@ -19,5 +19,6 @@ This service was originally designed with web sockets to facilitate instanteous 
     ├── app.js                  # Main application setup (i.e. middleware registration)
     ├── components/             # Route controllers and whatnot grouped by domain
     │   └── users/              # Controllers and whatnot for handling users
+    ├── index.js                # Entrypoint to the Backend service (mostly just Express setup)
     └── middleware/             # Global utility middleware
 ```

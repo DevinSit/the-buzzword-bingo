@@ -8,7 +8,7 @@ export default class Restartbar extends React.Component {
 
     render() {
         const {visible, warning} = this.props;
-        
+
         return (
             <div
                 className={classNames(
