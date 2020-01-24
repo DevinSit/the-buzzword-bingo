@@ -8,8 +8,8 @@ This service was originally designed with web sockets to facilitate instanteous 
 
 ## Tech Stack
 
-- Language: JavaScript
-- Framework: React
+- **Language**: JavaScript
+- **Framework**: React
 
 ## Code Structure
 

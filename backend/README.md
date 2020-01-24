@@ -6,8 +6,8 @@ This service was originally designed with web sockets to facilitate instanteous 
 
 ## Tech Stack
 
-- Language: JavaScript/Node
-- API Framework: Express
+- **Language**: JavaScript/Node
+- **API Framework**: Express
 
 ## Code Structure
 
